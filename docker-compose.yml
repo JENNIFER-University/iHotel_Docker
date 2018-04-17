@@ -1,0 +1,71 @@
+version: '3'
+
+services: 
+
+  hotel-service:
+    container_name: edu_ihotel_hotel
+    build: ./ihotel
+    networks:
+      ihotel_net:
+        ipv4_address: 10.10.0.9
+    ports: 
+      - 8080:8080
+    depends_on: 
+      - db-service
+    volumes:
+      - volume_ihotel:/usr/local
+ 
+  db-service:
+    container_name: edu_ihotel_db
+    image: mariadb
+    volumes:
+      - ihotel_mysqldata:/var/lib/mysql/data
+    ports:
+      - 3306:3306
+    networks:
+      ihotel_net:
+        ipv4_address: 10.10.0.8
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ihoteldb
+      MYSQL_USER: ihotel
+      MYSQL_PASSWORD: password
+
+  payment-service:
+    container_name: edu_ihotel_payment
+    build: ./payment
+    ports: 
+      - 18080:18080
+    networks:
+      ihotel_net:
+        ipv4_address: 10.10.0.10
+    volumes:
+      - volume_payment:/opt/edu
+      
+  jennifer-server:
+    container_name: edu_jennifer_server
+    build: ./jennifer
+    ports: 
+      - 7900:7900
+    networks: 
+      ihotel_net:
+        ipv4_address: 10.10.0.7
+    volumes:
+      - volume_jennifer:/opt/jennifer      
+
+networks:
+    ihotel_net:
+      driver_opts:
+        com.docker.network.enable_ipv6: "false"
+      ipam:
+        driver: default
+        config:
+          - subnet: 10.10.0.0/16
+
+volumes: 
+  ihotel_mysqldata: {}  
+  volume_jennifer: {}
+  volume_payment: {}
+  volume_ihotel: {}
+
+    
