@@ -5,9 +5,9 @@
 # --------------------------------------------------------
 
 # JENNIFER AGENT Download LINK. 
-AGENT_PACKAGE=AGENT_PACKAGE=ADD_AGENT_DOWNLOAD_LINK_HERE
+AGENT_PACKAGE=ADD_AGENT_DOWNLOAD_LINK_HERE
 
-# JENNIFER AGENT Download LINK. 
+# JENNIFER SERVER Download LINK. 
 SERVER_PACKAGE=ADD_SERVER_DOWNLOAD_LINK_HERE
 
 # ----------------------------------------------------------------------

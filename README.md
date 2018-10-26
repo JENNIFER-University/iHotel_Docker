@@ -9,7 +9,12 @@ The contents are as follow:
 * JENNIFER Server: This container contains JENNIFER Server.
 
 ## Requirements
-* In order to use this envrionment you will need to have JENNIFER Download Links (Agent and Server). Those links will be provided to you during the training session. 
+In order to use this envrionment you will need to have JENNIFER Download Links (Agent and Server). 
+
+
+* If you are using the self-training guide from [JENNIFER University](https://edu.jennifersoft.com) you will need to apply for a [trail license](https://jennifersoft.com) to get the download links.
+
+* If you are attending a JENNIFER training session, those links will be provided to you during the training session via the instructor. 
 
 ## Building the environment
 * To build the envrionment use the docker-compose command passing JENNIFER agent download link and server download link as arguments.

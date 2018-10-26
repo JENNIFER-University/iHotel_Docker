@@ -1,13 +1,15 @@
-FROM openjdk:7u151-jdk-jessie
+FROM openjdk:8u171-alpine
 
-LABEL maintainer="khalid@jennifersoft.com"
+LABEL maintainer="Khalid Saeed khalid@jennifersoft.com"
 
-# ENV VARIABLES
 ARG SERVER_PACKAGE
-ENV JENNIFER_HOME "/opt/jennifer"
+ENV JENNIFER_HOME /usr/local/jennifer
 
-# CREATE JENNIFER HOME
-RUN mkdir -p ${JENNIFER_HOME}
+# Update
+RUN apk update && \
+    apk add --no-cache vim curl
+
+RUN mkdir ${JENNIFER_HOME}
 
 WORKDIR ${JENNIFER_HOME}
 

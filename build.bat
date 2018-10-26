@@ -7,7 +7,7 @@ rem ------------------------------------------------------
 rem JENNIFER AGENT Download LINK. 
 set AGENT_PACKAGE=ADD_AGENT_DOWNLOAD_LINK_HERE
 
-rem# JENNIFER AGENT Download LINK. 
+rem JENNIFER SERVER Download LINK. 
 set SERVER_PACKAGE=ADD_SERVER_DOWNLOAD_LINK_HERE
 
 rem ----------------------------------------------------------------------

@@ -40,7 +40,7 @@ services:
       ihotel_net:
         ipv4_address: 10.10.0.10
     volumes:
-      - volume_payment:/opt/edu
+      - volume_payment:/usr/local
       
   jennifer-server:
     container_name: edu_jennifer_server
@@ -51,7 +51,7 @@ services:
       ihotel_net:
         ipv4_address: 10.10.0.7
     volumes:
-      - volume_jennifer:/opt/jennifer      
+      - volume_jennifer:/usr/local
 
 networks:
     ihotel_net:

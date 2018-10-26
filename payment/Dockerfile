@@ -1,27 +1,30 @@
-FROM openjdk:8u162-jdk-stretch
+FROM openjdk:8u171-alpine
 
-LABEL maintainer="khalid@jennifersoft.com"
+LABEL maintainer="Khalid Saeed khalid@jennifersoft.com"
 
 # Env Setup
 ARG AGENT_PACKAGE
-ENV PAYMENT_HOME /opt/edu
-ENV IHOTEL_VERSION 2.0.5
+ENV PAYMENT_HOME /usr/local
 
 # Update
-RUN apt-get update && \
-    apt-get install  -y --no-install-recommends vim
+RUN apk update && \
+    apk add --no-cache vim curl
 
-RUN mkdir -p ${PAYMENT_HOME}
+COPY ./get_package.sh /tmp/get_package.sh
 
-WORKDIR ${PAYMENT_HOME}
+WORKDIR /tmp
 
-RUN wget https://github.com/JENNIFER-University/IHotel/releases/download/v${IHOTEL_VERSION}/payment-${IHOTEL_VERSION}.zip && \
-    wget https://github.com/JENNIFER-University/IHotel/releases/download/v${IHOTEL_VERSION}/check-${IHOTEL_VERSION}.zip && \
-    wget -O jennifer_agent.zip ${AGENT_PACKAGE} && \
-    unzip payment-${IHOTEL_VERSION} -d ipayment && \
-    unzip check-${IHOTEL_VERSION} -d icheck && \
+RUN sh get_package.sh && \
+    wget -O ${PAYMENT_HOME}/jennifer_agent.zip ${AGENT_PACKAGE} && \
+    mkdir ${PAYMENT_HOME}/ipayment && \
+    mkdir ${PAYMENT_HOME}/icheck && \
+    unzip payment.zip -d ${PAYMENT_HOME}/ipayment && \
+    unzip check.zip -d ${PAYMENT_HOME}/icheck && \
     rm payment*.zip && \
     rm check*.zip
+
+
+WORKDIR ${PAYMENT_HOME}
 
 COPY ./check.conf  ${PAYMENT_HOME}/icheck/check.conf
 COPY ./check.sh  ${PAYMENT_HOME}/icheck/check.sh
